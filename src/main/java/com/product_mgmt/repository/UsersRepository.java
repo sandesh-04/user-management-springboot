@@ -1,0 +1,9 @@
+package com.product_mgmt.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.product_mgmt.entity.Users;
+
+public interface UsersRepository extends JpaRepository<Users,Long>{
+
+}
