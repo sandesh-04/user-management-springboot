@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | User Management</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: #ffffff;
+            border-bottom: 1px solid #e8ebf2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 42px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: #4f46e5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.22);
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-name span {
+            color: #4f46e5;
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .profile-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .profile-info {
+            line-height: 1.2;
+        }
+
+        .profile-info strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .profile-info small {
+            color: #7a8499;
+            font-size: 12px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 52px 35px 70px;
+        }
+
+        .welcome-section {
+            margin-bottom: 38px;
+        }
+
+        .welcome-section .eyebrow {
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section h1 {
+            font-size: 38px;
+            line-height: 1.2;
+            letter-spacing: -1.2px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #6c7589;
+            font-size: 16px;
+            max-width: 620px;
+            line-height: 1.7;
+        }
+
+        /* ================= DASHBOARD GRID ================= */
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6c7589;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .dashboard-card {
+            background: #ffffff;
+            border: 1px solid #e7eaf1;
+            border-radius: 20px;
+            padding: 30px;
+            min-height: 235px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .dashboard-card::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #f0f2ff;
+            right: -55px;
+            bottom: -65px;
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-6px);
+            border-color: #d8d9ff;
+            box-shadow: 0 18px 45px rgba(30, 41, 59, 0.09);
+        }
+
+        .dashboard-card:hover::after {
+            transform: scale(1.25);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dashboard-card h2 {
+            font-size: 20px;
+            margin-bottom: 9px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dashboard-card p {
+            color: #737d91;
+            line-height: 1.6;
+            font-size: 14px;
+            max-width: 420px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-arrow {
+            position: absolute;
+            right: 27px;
+            top: 30px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #f6f7fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4f46e5;
+            font-size: 18px;
+            transition: 0.25s ease;
+            z-index: 3;
+        }
+
+        .dashboard-card:hover .card-arrow {
+            background: #4f46e5;
+            color: white;
+            transform: translateX(3px);
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            margin-top: 55px;
+            color: #9aa2b1;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .main {
+                padding: 40px 20px 60px;
+            }
+
+            .welcome-section h1 {
+                font-size: 30px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-card {
+                min-height: 210px;
+            }
+        }
+
+        @media (max-width: 420px) {
+
+            .brand-name {
+                font-size: 17px;
+            }
+
+            .brand-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .welcome-section h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+
+            <div class="brand-name">
+                Sales<span>Savvy</span>
+            </div>
+        </div>
+
+        <div class="admin-profile">
+
+            <div class="profile-avatar">
+                A
+            </div>
+
+            <div class="profile-info">
+                <strong>Administrator</strong>
+                <small>Admin Panel</small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+        <section class="welcome-section">
+
+            <div class="eyebrow">
+                Control Center
+            </div>
+
+            <h1>
+                Welcome back, Admin
+            </h1>
+
+            <p>
+                Manage your application users and products from one
+                centralized administration panel.
+            </p>
+
+        </section>
+
+
+        <div class="section-title">
+            Management
+        </div>
+
+
+        <section class="dashboard-grid">
+
+
+            <!-- USER MANAGEMENT -->
+
+            <div class="dashboard-card"
+                 onclick="openUserManagement()">
+
+                <div class="card-arrow">
+                    →
+                </div>
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <h2>
+                    User Management
+                </h2>
+
+                <p>
+                    Register new users, view user records, search,
+                    update and remove users from the system.
+                </p>
+
+            </div>
+
+
+            <!-- PRODUCT MANAGEMENT -->
+
+            <div class="dashboard-card"
+                 onclick="openProductManagement()">
+
+                <div class="card-arrow">
+                    →
+                </div>
+
+                <div class="card-icon">
+                    ◈
+                </div>
+
+                <h2>
+                    Product Management
+                </h2>
+
+                <p>
+                    Manage products, update product information,
+                    search records and maintain your product catalog.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <div class="footer">
+            © 2026 SalesSavvy · Administration Portal
+        </div>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function openUserManagement() {
+            window.location.href = "user-mgmt.html";
+        }
+
+        function openProductManagement() {
+            /*
+             * Change this filename if your existing
+             * Product Management dashboard uses
+             * a different HTML filename.
+             */
+            window.location.href = "product-mgmt.html";
+        }
+
+    </script>
+
+</body>
+</html>

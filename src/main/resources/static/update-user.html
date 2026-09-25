@@ -1,0 +1,1612 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update User | SalesSavvy</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: #ffffff;
+            border-bottom: 1px solid #e8ebf2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 42px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: #4f46e5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.22);
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand-name span {
+            color: #4f46e5;
+        }
+
+        .back-btn {
+            border: none;
+            background: #f4f5fa;
+            color: #4f46e5;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #e9eaff;
+            transform: translateX(-2px);
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 45px 30px 70px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8a93a6;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb span:last-child {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            letter-spacing: -1px;
+            margin-bottom: 9px;
+        }
+
+        .page-header p {
+            color: #6c7589;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 680px;
+        }
+
+        /* ================= CARD ================= */
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e7eaf1;
+            border-radius: 22px;
+            padding: 34px;
+            box-shadow: 0 12px 35px rgba(30, 41, 59, 0.05);
+            margin-bottom: 25px;
+        }
+
+        .card-heading {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 25px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 13px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .card-heading h2 {
+            font-size: 19px;
+        }
+
+        .card-heading p {
+            color: #8a93a6;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        /* ================= ID SEARCH ================= */
+
+        .id-section {
+            background: #fafbff;
+            border: 1px solid #e6e9f3;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 28px;
+        }
+
+        .id-label {
+            display: block;
+            color: #596276;
+            font-size: 13px;
+            font-weight: 650;
+            margin-bottom: 9px;
+        }
+
+        .id-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .id-input {
+            flex: 1;
+            height: 46px;
+            border: 1px solid #dfe3eb;
+            border-radius: 10px;
+            padding: 0 14px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .id-input:focus {
+            border-color: #7c76f5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
+        }
+
+        .load-btn {
+            height: 46px;
+            border: none;
+            border-radius: 10px;
+            padding: 0 22px;
+            background: #172033;
+            color: white;
+            font-size: 13px;
+            font-weight: 650;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .load-btn:hover {
+            background: #252e43;
+            transform: translateY(-1px);
+        }
+
+        .load-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .id-note {
+            color: #929bad;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+
+        /* ================= FORM ================= */
+
+        #updateForm {
+            display: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #4d5669;
+            font-size: 13px;
+            font-weight: 650;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #dfe3eb;
+            border-radius: 10px;
+            outline: none;
+            background: white;
+            color: #172033;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        input,
+        select {
+            height: 46px;
+            padding: 0 13px;
+        }
+
+        textarea {
+            min-height: 105px;
+            padding: 12px 13px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #7c76f5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
+        }
+
+        input:disabled {
+            background: #f5f6f9;
+            color: #777f90;
+            cursor: not-allowed;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 70px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #4f46e5;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 650;
+        }
+
+        .field-note {
+            color: #949cad;
+            font-size: 11px;
+            margin-top: 7px;
+        }
+
+        /* ================= IMAGE ================= */
+
+        .image-preview-section {
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid #edf0f5;
+            background: #fafbfe;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .image-preview {
+            width: 78px;
+            height: 78px;
+            border-radius: 17px;
+            object-fit: cover;
+            border: 1px solid #dfe3eb;
+            background: #eef2ff;
+        }
+
+        .image-placeholder {
+            width: 78px;
+            height: 78px;
+            border-radius: 17px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 23px;
+        }
+
+        .image-info h3 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .image-info p {
+            color: #8a93a6;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* ================= ACTIONS ================= */
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #edf0f5;
+        }
+
+        .cancel-btn,
+        .update-btn {
+            height: 46px;
+            padding: 0 23px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 650;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .cancel-btn {
+            border: 1px solid #dfe3eb;
+            background: white;
+            color: #596276;
+        }
+
+        .cancel-btn:hover {
+            background: #f7f8fb;
+        }
+
+        .update-btn {
+            border: none;
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 7px 18px rgba(79, 70, 229, 0.22);
+        }
+
+        .update-btn:hover {
+            background: #4338ca;
+            transform: translateY(-1px);
+        }
+
+        .update-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ================= MESSAGES ================= */
+
+        .message {
+            display: none;
+            padding: 14px 16px;
+            border-radius: 11px;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-top: 20px;
+        }
+
+        .message.success {
+            display: block;
+            background: #ecfdf3;
+            color: #16803c;
+            border: 1px solid #b7ebc6;
+        }
+
+        .message.error {
+            display: block;
+            background: #fff1f2;
+            color: #b42318;
+            border: 1px solid #fecdd3;
+        }
+
+        /* ================= LOADING ================= */
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #8a93a6;
+            font-size: 13px;
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #e6e8f0;
+            border-top-color: #4f46e5;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 11px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #9aa2b1;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .brand-name {
+                font-size: 17px;
+            }
+
+            .main {
+                padding: 35px 18px 55px;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+            .card {
+                padding: 24px 20px;
+            }
+
+            .id-row {
+                flex-direction: column;
+            }
+
+            .load-btn {
+                width: 100%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .actions {
+                flex-direction: column-reverse;
+            }
+
+            .cancel-btn,
+            .update-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                S
+            </div>
+
+            <div class="brand-name">
+                Sales<span>Savvy</span>
+            </div>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+
+            ← User Management
+
+        </button>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- BREADCRUMB -->
+
+        <div class="breadcrumb">
+
+            <span>Dashboard</span>
+
+            <span>›</span>
+
+            <span>User Management</span>
+
+            <span>›</span>
+
+            <span>Update User</span>
+
+        </div>
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <div class="eyebrow">
+                User Administration
+            </div>
+
+            <h1>
+                Update User
+            </h1>
+
+            <p>
+                Find an existing user, review their information,
+                and update the required details.
+            </p>
+
+        </section>
+
+
+        <!-- MAIN CARD -->
+
+        <section class="card">
+
+
+            <div class="card-heading">
+
+                <div class="icon-box">
+                    ✎
+                </div>
+
+                <div>
+
+                    <h2>
+                        User Information
+                    </h2>
+
+                    <p>
+                        Load a user before editing their details.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ID SEARCH ================= -->
+
+            <div class="id-section">
+
+                <label class="id-label">
+                    Administrative User ID
+                </label>
+
+                <div class="id-row">
+
+                    <input
+                        type="number"
+                        id="userId"
+                        class="id-input"
+                        placeholder="Enter user ID"
+                        min="1"
+                    >
+
+                    <button
+                        type="button"
+                        class="load-btn"
+                        id="loadButton">
+
+                        Load User
+
+                    </button>
+
+                </div>
+
+                <div class="id-note">
+                    The user ID is used only by the administrator
+                    to identify the record.
+                </div>
+
+            </div>
+
+
+            <!-- ================= LOADING ================= -->
+
+            <div
+                class="loading"
+                id="loadingState">
+
+                <div class="spinner"></div>
+
+                <div>
+                    Loading user information...
+                </div>
+
+            </div>
+
+
+            <!-- ================= UPDATE FORM ================= -->
+
+            <form
+                id="updateForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+                        <label for="username">
+                            Username
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            required
+                            maxlength="50"
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            required
+                            maxlength="100"
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            New Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Leave blank to keep current password"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword()"
+                                id="passwordToggle">
+
+                                Show
+
+                            </button>
+
+                        </div>
+
+                        <div class="field-note">
+                            Leave this field blank if the password should not change.
+                        </div>
+
+                    </div>
+
+
+                    <!-- MOBILE -->
+
+                    <div class="form-group">
+
+                        <label for="mobile">
+                            Mobile Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="mobile"
+                            required
+                            maxlength="15"
+                        >
+
+                    </div>
+
+
+                    <!-- DOB -->
+
+                    <div class="form-group">
+
+                        <label for="dob">
+                            Date of Birth
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- GENDER -->
+
+                    <div class="form-group">
+
+                        <label for="gender">
+                            Gender
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="gender"
+                            required>
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="MALE">
+                                Male
+                            </option>
+
+                            <option value="FEMALE">
+                                Female
+                            </option>
+
+                            <option value="OTHERS">
+                                Others
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group full">
+
+                        <label for="address">
+                            Address
+                            <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            id="address"
+                            required
+                            maxlength="500"
+                            placeholder="Enter user's address">
+                        </textarea>
+
+                    </div>
+
+
+                    <!-- PROFILE IMAGE -->
+
+                    <div class="form-group full">
+
+                        <label for="dpUrl">
+                            Profile Image URL
+                        </label>
+
+                        <input
+                            type="url"
+                            id="dpUrl"
+                            maxlength="500"
+                            placeholder="https://example.com/profile.jpg"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- IMAGE PREVIEW -->
+
+                <div class="image-preview-section">
+
+                    <img
+                        id="imagePreview"
+                        class="image-preview"
+                        alt="Profile preview"
+                        style="display: none;"
+                    >
+
+                    <div
+                        id="imagePlaceholder"
+                        class="image-placeholder">
+
+                        U
+
+                    </div>
+
+
+                    <div class="image-info">
+
+                        <h3>
+                            Profile Preview
+                        </h3>
+
+                        <p>
+                            The image updates automatically when you
+                            enter a valid profile image URL.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="message"
+                    class="message">
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="goBack()">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="update-btn"
+                        id="updateButton">
+
+                        Update User
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+        <div class="footer">
+            © 2026 SalesSavvy · User Management
+        </div>
+
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        let currentUserId = null;
+
+
+        const userIdInput =
+            document.getElementById("userId");
+
+        const loadButton =
+            document.getElementById("loadButton");
+
+        const loadingState =
+            document.getElementById("loadingState");
+
+        const updateForm =
+            document.getElementById("updateForm");
+
+        const updateButton =
+            document.getElementById("updateButton");
+
+        const message =
+            document.getElementById("message");
+
+
+        /* ================= LOAD USER ================= */
+
+        loadButton.addEventListener(
+            "click",
+            loadUser
+        );
+
+
+        async function loadUser() {
+
+            const id =
+                userIdInput.value.trim();
+
+
+            if (!id || Number(id) <= 0) {
+
+                showMessage(
+                    "Please enter a valid user ID.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            hideMessage();
+
+            updateForm.style.display = "none";
+
+            loadingState.style.display = "block";
+
+            loadButton.disabled = true;
+
+            loadButton.textContent =
+                "Loading...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/searchUser/" +
+                        encodeURIComponent(id)
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "HTTP " + response.status
+                    );
+
+                }
+
+
+                const text =
+                    await response.text();
+
+
+                if (!text || text === "null") {
+
+                    showMessage(
+                        "No user was found with ID " +
+                        id + ".",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                const user =
+                    JSON.parse(text);
+
+
+                currentUserId =
+                    Number(id);
+
+
+                fillForm(user);
+
+
+                updateForm.style.display =
+                    "block";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Load user error:",
+                    error
+                );
+
+                showMessage(
+                    "Unable to load the user. " +
+                    "Please make sure the Spring Boot application is running.",
+                    "error"
+                );
+
+            } finally {
+
+                loadingState.style.display =
+                    "none";
+
+                loadButton.disabled =
+                    false;
+
+                loadButton.textContent =
+                    "Load User";
+
+            }
+
+        }
+
+
+        /* ================= FILL FORM ================= */
+
+        function fillForm(user) {
+
+            document.getElementById(
+                "username"
+            ).value =
+                user.username || "";
+
+
+            document.getElementById(
+                "email"
+            ).value =
+                user.email || "";
+
+
+            /*
+             * Password is intentionally left blank.
+             *
+             * The backend will keep the existing password
+             * when password is blank.
+             */
+
+            document.getElementById(
+                "password"
+            ).value = "";
+
+
+            document.getElementById(
+                "mobile"
+            ).value =
+                user.mobile || "";
+
+
+            document.getElementById(
+                "dob"
+            ).value =
+                user.dob || "";
+
+
+            document.getElementById(
+                "gender"
+            ).value =
+                user.gender || "";
+
+
+            document.getElementById(
+                "address"
+            ).value =
+                user.address || "";
+
+
+            document.getElementById(
+                "dpUrl"
+            ).value =
+                user.dpUrl || "";
+
+
+            updateImagePreview(
+                user.dpUrl,
+                user.username
+            );
+
+        }
+
+
+        /* ================= UPDATE USER ================= */
+
+        updateForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                if (currentUserId === null) {
+
+                    showMessage(
+                        "Please load a user before updating.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                hideMessage();
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value.trim();
+
+
+                const userData = {
+
+                    id: currentUserId,
+
+                    username:
+                        document.getElementById(
+                            "username"
+                        ).value.trim(),
+
+                    email:
+                        document.getElementById(
+                            "email"
+                        ).value.trim(),
+
+                    password:
+                        password,
+
+                    mobile:
+                        document.getElementById(
+                            "mobile"
+                        ).value.trim(),
+
+                    dob:
+                        document.getElementById(
+                            "dob"
+                        ).value,
+
+                    gender:
+                        document.getElementById(
+                            "gender"
+                        ).value,
+
+                    address:
+                        document.getElementById(
+                            "address"
+                        ).value.trim(),
+
+                    dpUrl:
+                        document.getElementById(
+                            "dpUrl"
+                        ).value.trim()
+
+                };
+
+
+                /*
+                 * Basic frontend validation
+                 */
+
+                if (
+                    !userData.username ||
+                    !userData.email ||
+                    !userData.mobile ||
+                    !userData.dob ||
+                    !userData.gender ||
+                    !userData.address
+                ) {
+
+                    showMessage(
+                        "Please fill in all required fields.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                updateButton.disabled =
+                    true;
+
+                updateButton.textContent =
+                    "Updating...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/updateUser",
+                            {
+
+                                method: "PUT",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        userData
+                                    )
+
+                            }
+                        );
+
+
+                    const text =
+                        await response.text();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            text ||
+                            "Unable to update user."
+                        );
+
+                    }
+
+
+                    /*
+                     * Your backend returns UsersResponseDto
+                     * after a successful update.
+                     */
+
+                    let updatedUser = null;
+
+
+                    if (text) {
+
+                        try {
+
+                            updatedUser =
+                                JSON.parse(text);
+
+                        } catch (e) {
+
+                            updatedUser = null;
+
+                        }
+
+                    }
+
+
+                    if (updatedUser) {
+
+                        fillForm(updatedUser);
+
+                        /*
+                         * fillForm clears password,
+                         * which is exactly what we want
+                         * after the update.
+                         */
+
+                    }
+
+
+                    showMessage(
+                        "User updated successfully.",
+                        "success"
+                    );
+
+
+                    /*
+                     * Scroll the success message into view.
+                     */
+
+                    message.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Update error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        error.message ||
+                        "Unable to update the user.",
+                        "error"
+                    );
+
+                } finally {
+
+                    updateButton.disabled =
+                        false;
+
+                    updateButton.textContent =
+                        "Update User";
+
+                }
+
+            }
+        );
+
+
+        /* ================= IMAGE PREVIEW ================= */
+
+        document.getElementById(
+            "dpUrl"
+        ).addEventListener(
+            "input",
+            function() {
+
+                const url =
+                    this.value.trim();
+
+                const username =
+                    document.getElementById(
+                        "username"
+                    ).value.trim();
+
+                updateImagePreview(
+                    url,
+                    username
+                );
+
+            }
+        );
+
+
+        function updateImagePreview(
+            url,
+            username
+        ) {
+
+            const image =
+                document.getElementById(
+                    "imagePreview"
+                );
+
+            const placeholder =
+                document.getElementById(
+                    "imagePlaceholder"
+                );
+
+
+            image.style.display =
+                "none";
+
+            placeholder.style.display =
+                "flex";
+
+
+            placeholder.textContent =
+                getInitials(username);
+
+
+            if (!url) {
+
+                return;
+
+            }
+
+
+            image.onload =
+                function() {
+
+                    image.style.display =
+                        "block";
+
+                    placeholder.style.display =
+                        "none";
+
+                };
+
+
+            image.onerror =
+                function() {
+
+                    image.style.display =
+                        "none";
+
+                    placeholder.style.display =
+                        "flex";
+
+                };
+
+
+            image.src = url;
+
+        }
+
+
+        /* ================= PASSWORD ================= */
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById(
+                    "password"
+                );
+
+            const toggle =
+                document.getElementById(
+                    "passwordToggle"
+                );
+
+
+            if (
+                password.type === "password"
+            ) {
+
+                password.type =
+                    "text";
+
+                toggle.textContent =
+                    "Hide";
+
+            } else {
+
+                password.type =
+                    "password";
+
+                toggle.textContent =
+                    "Show";
+
+            }
+
+        }
+
+
+        /* ================= INITIALS ================= */
+
+        function getInitials(username) {
+
+            if (!username) {
+                return "?";
+            }
+
+
+            const words =
+                username
+                    .trim()
+                    .split(/\s+/);
+
+
+            if (words.length === 1) {
+
+                return words[0]
+                    .substring(0, 2)
+                    .toUpperCase();
+
+            }
+
+
+            return (
+                words[0][0] +
+                words[1][0]
+            ).toUpperCase();
+
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            message.textContent =
+                text;
+
+            message.className =
+                "message " + type;
+
+        }
+
+
+        function hideMessage() {
+
+            message.textContent =
+                "";
+
+            message.className =
+                "message";
+
+        }
+
+
+        /* ================= NAVIGATION ================= */
+
+        function goBack() {
+
+            window.location.href =
+                "user-mgmt.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+

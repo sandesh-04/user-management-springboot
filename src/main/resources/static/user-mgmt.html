@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Management | SalesSavvy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: #ffffff;
+            border-bottom: 1px solid #e8ebf2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 42px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: #4f46e5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.22);
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-name span {
+            color: #4f46e5;
+        }
+
+        .back-btn {
+            border: none;
+            background: #f4f5fa;
+            color: #4f46e5;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #e9eaff;
+            transform: translateX(-2px);
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 50px 35px 70px;
+        }
+
+        .top-section {
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8a93a6;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb span:last-child {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .top-section .eyebrow {
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .top-section h1 {
+            font-size: 38px;
+            letter-spacing: -1.2px;
+            margin-bottom: 10px;
+        }
+
+        .top-section p {
+            color: #6c7589;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 650px;
+        }
+
+        /* ================= OPERATION GRID ================= */
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6c7589;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .operations {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .operation-card {
+            background: #ffffff;
+            border: 1px solid #e7eaf1;
+            border-radius: 18px;
+            padding: 25px;
+            min-height: 215px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .operation-card::before {
+            content: "";
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #f0f2ff;
+            right: -45px;
+            bottom: -45px;
+            transition: 0.3s ease;
+        }
+
+        .operation-card:hover {
+            transform: translateY(-5px);
+            border-color: #d8d9ff;
+            box-shadow: 0 16px 35px rgba(30, 41, 59, 0.08);
+        }
+
+        .operation-card:hover::before {
+            transform: scale(1.3);
+        }
+
+        .operation-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 13px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            margin-bottom: 19px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .operation-card h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .operation-card p {
+            color: #737d91;
+            font-size: 13px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            max-width: 280px;
+        }
+
+        .operation-arrow {
+            position: absolute;
+            right: 21px;
+            top: 23px;
+            width: 31px;
+            height: 31px;
+            border-radius: 50%;
+            background: #f6f7fb;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            transition: 0.25s ease;
+        }
+
+        .operation-card:hover .operation-arrow {
+            background: #4f46e5;
+            color: white;
+            transform: translateX(3px);
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            margin-top: 55px;
+            color: #9aa2b1;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .operations {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .brand-name {
+                font-size: 17px;
+            }
+
+            .main {
+                padding: 38px 20px 60px;
+            }
+
+            .top-section h1 {
+                font-size: 30px;
+            }
+
+            .operations {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                S
+            </div>
+
+            <div class="brand-name">
+                Sales<span>Savvy</span>
+            </div>
+
+        </div>
+
+        <button class="back-btn" onclick="goBack()">
+            ← Dashboard
+        </button>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <section class="top-section">
+
+            <div class="breadcrumb">
+                <span>Dashboard</span>
+                <span>›</span>
+                <span>User Management</span>
+            </div>
+
+            <div class="eyebrow">
+                Administration
+            </div>
+
+            <h1>
+                User Management
+            </h1>
+
+            <p>
+                Manage registered users from one place. Choose an
+                operation below to create, view, search, update,
+                or remove user records.
+            </p>
+
+        </section>
+
+
+        <div class="section-title">
+            User Operations
+        </div>
+
+
+        <section class="operations">
+
+
+            <!-- REGISTER -->
+
+            <div class="operation-card"
+                 onclick="openPage('register-user.html')">
+
+                <div class="operation-arrow">
+                    →
+                </div>
+
+                <div class="operation-icon">
+                    ＋
+                </div>
+
+                <h2>
+                    Register User
+                </h2>
+
+                <p>
+                    Create a new user account and securely store
+                    the user's information.
+                </p>
+
+            </div>
+
+
+            <!-- VIEW ALL -->
+
+            <div class="operation-card"
+                 onclick="openPage('view-all-users.html')">
+
+                <div class="operation-arrow">
+                    →
+                </div>
+
+                <div class="operation-icon">
+                    ☷
+                </div>
+
+                <h2>
+                    View All Users
+                </h2>
+
+                <p>
+                    View all registered users and their available
+                    profile information.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="operation-card"
+                 onclick="openPage('search-user.html')">
+
+                <div class="operation-arrow">
+                    →
+                </div>
+
+                <div class="operation-icon">
+                    ⌕
+                </div>
+
+                <h2>
+                    Search User
+                </h2>
+
+                <p>
+                    Find a specific user by entering the user's
+                    administrative ID.
+                </p>
+
+            </div>
+
+
+            <!-- UPDATE -->
+
+            <div class="operation-card"
+                 onclick="openPage('update-user.html')">
+
+                <div class="operation-arrow">
+                    →
+                </div>
+
+                <div class="operation-icon">
+                    ✎
+                </div>
+
+                <h2>
+                    Update User
+                </h2>
+
+                <p>
+                    Modify existing user information while
+                    keeping the account data up to date.
+                </p>
+
+            </div>
+
+
+            <!-- DELETE -->
+
+            <div class="operation-card"
+                 onclick="openPage('delete-user.html')">
+
+                <div class="operation-arrow">
+                    →
+                </div>
+
+                <div class="operation-icon">
+                    ×
+                </div>
+
+                <h2>
+                    Delete User
+                </h2>
+
+                <p>
+                    Remove a user account from the system using
+                    the administrative user ID.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <div class="footer">
+            © 2026 SalesSavvy · User Management
+        </div>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function openPage(page) {
+            window.location.href = page;
+        }
+
+        function goBack() {
+            window.location.href = "admin-home.html";
+        }
+
+    </script>
+
+</body>
+</html>

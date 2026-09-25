@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>All Users | SalesSavvy</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: #ffffff;
+            border-bottom: 1px solid #e8ebf2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 42px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: #4f46e5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.22);
+        }
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-name span {
+            color: #4f46e5;
+        }
+
+        .back-btn {
+            border: none;
+            background: #f4f5fa;
+            color: #4f46e5;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #e9eaff;
+            transform: translateX(-2px);
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 45px 30px 70px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8a93a6;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb span:last-child {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        /* ================= PAGE HEADER ================= */
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            letter-spacing: -1px;
+            margin-bottom: 9px;
+        }
+
+        .page-header p {
+            color: #6c7589;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .refresh-btn {
+            border: 1px solid #dfe3eb;
+            background: #ffffff;
+            color: #4f46e5;
+            padding: 11px 17px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 650;
+            transition: 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .refresh-btn:hover {
+            background: #f4f5ff;
+            border-color: #c9c8fa;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary-card {
+            background: linear-gradient(135deg, #4f46e5, #635bdb);
+            border-radius: 18px;
+            padding: 22px 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            box-shadow: 0 12px 28px rgba(79, 70, 229, 0.18);
+        }
+
+        .summary-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .summary-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .summary-label {
+            font-size: 12px;
+            opacity: 0.78;
+            margin-bottom: 3px;
+        }
+
+        .summary-count {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .summary-right {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        /* ================= TABLE CARD ================= */
+
+        .table-card {
+            background: #ffffff;
+            border: 1px solid #e7eaf1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(30, 41, 59, 0.04);
+        }
+
+        /* ================= TOOLBAR ================= */
+
+        .toolbar {
+            padding: 20px 22px;
+            border-bottom: 1px solid #edf0f5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 430px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8c95a7;
+            font-size: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            border: 1px solid #dfe3eb;
+            border-radius: 11px;
+            padding: 12px 14px 12px 39px;
+            font-size: 13px;
+            outline: none;
+            color: #172033;
+            transition: 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: #7c76f5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
+        }
+
+        .search-input::placeholder {
+            color: #a4abba;
+        }
+
+        .result-info {
+            color: #7e8799;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 950px;
+        }
+
+        thead {
+            background: #fafbfe;
+        }
+
+        th {
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 750;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #7c8597;
+            border-bottom: 1px solid #edf0f5;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 17px 20px;
+            border-bottom: 1px solid #f0f2f6;
+            font-size: 13px;
+            color: #39445a;
+            vertical-align: middle;
+        }
+
+        tbody tr {
+            transition: background 0.18s ease;
+        }
+
+        tbody tr:hover {
+            background: #fafbff;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ================= USER ================= */
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 170px;
+        }
+
+        .user-image {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: #eef2ff;
+            border: 1px solid #e1e4ee;
+            flex-shrink: 0;
+        }
+
+        .user-placeholder {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .username {
+            font-weight: 650;
+            color: #202a3d;
+        }
+
+        .email {
+            color: #7d8698;
+            margin-top: 3px;
+            font-size: 12px;
+        }
+
+        /* ================= BADGES ================= */
+
+        .gender-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 9px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .male {
+            background: #eef4ff;
+            color: #356ae6;
+        }
+
+        .female {
+            background: #fff0f6;
+            color: #d63384;
+        }
+
+        .others {
+            background: #f3f0ff;
+            color: #7048c8;
+        }
+
+        /* ================= LOADING ================= */
+
+        .loading {
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 38px;
+            height: 38px;
+            border: 3px solid #e6e8f0;
+            border-top-color: #4f46e5;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        .loading p {
+            color: #8a93a6;
+            font-size: 13px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ================= EMPTY / ERROR ================= */
+
+        .state {
+            padding: 70px 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .state-icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 17px;
+            border-radius: 16px;
+            background: #eef2ff;
+            color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .state h3 {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        .state p {
+            color: #7f889a;
+            font-size: 13px;
+            max-width: 430px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            border: none;
+            background: #4f46e5;
+            color: white;
+            padding: 10px 17px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        .retry-btn:hover {
+            background: #4338ca;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #9aa2b1;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .brand-name {
+                font-size: 17px;
+            }
+
+            .main {
+                padding: 35px 18px 55px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+            .refresh-btn {
+                width: 100%;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-wrapper {
+                max-width: none;
+            }
+
+            .result-info {
+                text-align: right;
+            }
+
+            .summary-card {
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .summary-right {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                S
+            </div>
+
+            <div class="brand-name">
+                Sales<span>Savvy</span>
+            </div>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+
+            ← User Management
+
+        </button>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- BREADCRUMB -->
+
+        <div class="breadcrumb">
+
+            <span>Dashboard</span>
+
+            <span>›</span>
+
+            <span>User Management</span>
+
+            <span>›</span>
+
+            <span>All Users</span>
+
+        </div>
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    User Directory
+                </div>
+
+                <h1>
+                    All Users
+                </h1>
+
+                <p>
+                    View and manage the registered users in your
+                    application.
+                </p>
+
+            </div>
+
+
+            <button
+                class="refresh-btn"
+                onclick="loadUsers()">
+
+                ↻ &nbsp; Refresh Users
+
+            </button>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-card">
+
+            <div class="summary-left">
+
+                <div class="summary-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <div class="summary-label">
+                        Registered Users
+                    </div>
+
+                    <div
+                        class="summary-count"
+                        id="userCount">
+
+                        0
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-right">
+                Live data from your database
+            </div>
+
+        </section>
+
+
+        <!-- TABLE -->
+
+        <section class="table-card">
+
+
+            <!-- TOOLBAR -->
+
+            <div class="toolbar">
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search by username, email or mobile..."
+                        oninput="filterUsers()">
+
+                </div>
+
+
+                <div
+                    class="result-info"
+                    id="resultInfo">
+
+                    Loading users...
+
+                </div>
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                class="loading"
+                id="loadingState">
+
+                <div class="spinner"></div>
+
+                <p>
+                    Loading users...
+                </p>
+
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                class="state"
+                id="emptyState">
+
+                <div class="state-icon">
+                    👥
+                </div>
+
+                <h3>
+                    No users found
+                </h3>
+
+                <p>
+                    There are currently no registered users
+                    matching your search.
+                </p>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                class="state"
+                id="errorState">
+
+                <div class="state-icon">
+                    !
+                </div>
+
+                <h3>
+                    Unable to load users
+                </h3>
+
+                <p id="errorMessage">
+                    Something went wrong while connecting
+                    to the server.
+                </p>
+
+                <button
+                    class="retry-btn"
+                    onclick="loadUsers()">
+
+                    Try Again
+
+                </button>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div
+                class="table-container"
+                id="tableContainer"
+                style="display: none;">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                User
+                            </th>
+
+                            <th>
+                                Mobile
+                            </th>
+
+                            <th>
+                                Date of Birth
+                            </th>
+
+                            <th>
+                                Gender
+                            </th>
+
+                            <th>
+                                Address
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="userTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <div class="footer">
+            © 2026 SalesSavvy · User Management
+        </div>
+
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        let allUsers = [];
+
+
+        /*
+         * Load all users
+         *
+         * GET /viewAllUsers
+         */
+
+        async function loadUsers() {
+
+            showLoading();
+
+            try {
+
+                const response =
+                    await fetch("/viewAllUsers");
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Server returned HTTP " +
+                        response.status
+                    );
+
+                }
+
+
+                const users =
+                    await response.json();
+
+
+                allUsers = Array.isArray(users)
+                    ? users
+                    : [];
+
+
+                document.getElementById(
+                    "userCount"
+                ).textContent = allUsers.length;
+
+
+                renderUsers(allUsers);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error loading users:",
+                    error
+                );
+
+                showError(
+                    "Could not retrieve users from the server. " +
+                    "Make sure your Spring Boot application is running."
+                );
+
+            }
+
+        }
+
+
+        /*
+         * Render users in table
+         */
+
+        function renderUsers(users) {
+
+            const tableBody =
+                document.getElementById(
+                    "userTableBody"
+                );
+
+
+            tableBody.innerHTML = "";
+
+
+            if (users.length === 0) {
+
+                showEmpty();
+
+                return;
+
+            }
+
+
+            users.forEach(function(user) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                const initials =
+                    getInitials(user.username);
+
+
+                const imageHTML =
+                    user.dpUrl &&
+                    user.dpUrl.trim() !== ""
+
+                    ? `
+                        <img
+                            class="user-image"
+                            src="${escapeAttribute(user.dpUrl)}"
+                            alt="Profile"
+                            onerror="this.style.display='none';
+                            this.nextElementSibling.style.display='flex';"
+                        >
+
+                        <div
+                            class="user-placeholder"
+                            style="display:none;">
+
+                            ${escapeHTML(initials)}
+
+                        </div>
+                      `
+
+                    : `
+                        <div class="user-placeholder">
+                            ${escapeHTML(initials)}
+                        </div>
+                      `;
+
+
+                const genderClass =
+                    getGenderClass(user.gender);
+
+
+                row.innerHTML = `
+
+                    <td>
+
+                        <div class="user-cell">
+
+                            ${imageHTML}
+
+                            <div>
+
+                                <div class="username">
+                                    ${escapeHTML(
+                                        user.username || "—"
+                                    )}
+                                </div>
+
+                                <div class="email">
+                                    ${escapeHTML(
+                                        user.email || "—"
+                                    )}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(
+                            user.mobile || "—"
+                        )}
+                    </td>
+
+
+                    <td>
+                        ${formatDate(user.dob)}
+                    </td>
+
+
+                    <td>
+
+                        <span
+                            class="gender-badge ${genderClass}">
+
+                            ${formatGender(user.gender)}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+                        ${escapeHTML(
+                            user.address || "—"
+                        )}
+                    </td>
+
+                `;
+
+
+                tableBody.appendChild(row);
+
+            });
+
+
+            document.getElementById(
+                "tableContainer"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "loadingState"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "emptyState"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "errorState"
+            ).style.display = "none";
+
+
+            updateResultInfo(users.length);
+
+        }
+
+
+        /*
+         * Search / filter users
+         */
+
+        function filterUsers() {
+
+            const search =
+                document.getElementById(
+                    "searchInput"
+                ).value
+                .trim()
+                .toLowerCase();
+
+
+            if (!search) {
+
+                renderUsers(allUsers);
+
+                return;
+
+            }
+
+
+            const filtered =
+                allUsers.filter(function(user) {
+
+                    return (
+
+                        String(
+                            user.username || ""
+                        ).toLowerCase().includes(search)
+
+                        ||
+
+                        String(
+                            user.email || ""
+                        ).toLowerCase().includes(search)
+
+                        ||
+
+                        String(
+                            user.mobile || ""
+                        ).toLowerCase().includes(search)
+
+                        ||
+
+                        String(
+                            user.address || ""
+                        ).toLowerCase().includes(search)
+
+                    );
+
+                });
+
+
+            renderUsers(filtered);
+
+        }
+
+
+        /*
+         * Gender styling
+         */
+
+        function getGenderClass(gender) {
+
+            if (gender === "MALE") {
+                return "male";
+            }
+
+            if (gender === "FEMALE") {
+                return "female";
+            }
+
+            return "others";
+
+        }
+
+
+        function formatGender(gender) {
+
+            if (!gender) {
+                return "—";
+            }
+
+            if (gender === "MALE") {
+                return "Male";
+            }
+
+            if (gender === "FEMALE") {
+                return "Female";
+            }
+
+            if (gender === "OTHERS") {
+                return "Others";
+            }
+
+            return gender;
+
+        }
+
+
+        /*
+         * Date formatting
+         */
+
+        function formatDate(date) {
+
+            if (!date) {
+                return "—";
+            }
+
+            const parts =
+                String(date).split("-");
+
+
+            if (parts.length !== 3) {
+                return date;
+            }
+
+
+            return (
+                parts[2] +
+                "-" +
+                parts[1] +
+                "-" +
+                parts[0]
+            );
+
+        }
+
+
+        /*
+         * User initials
+         */
+
+        function getInitials(username) {
+
+            if (!username) {
+                return "?";
+            }
+
+
+            const words =
+                username
+                    .trim()
+                    .split(/\s+/);
+
+
+            if (words.length === 1) {
+
+                return words[0]
+                    .substring(0, 2)
+                    .toUpperCase();
+
+            }
+
+
+            return (
+                words[0][0] +
+                words[1][0]
+            ).toUpperCase();
+
+        }
+
+
+        /*
+         * Update result counter
+         */
+
+        function updateResultInfo(count) {
+
+            const total =
+                allUsers.length;
+
+
+            document.getElementById(
+                "resultInfo"
+            ).textContent =
+                "Showing " +
+                count +
+                " of " +
+                total +
+                " users";
+
+        }
+
+
+        /*
+         * Loading state
+         */
+
+        function showLoading() {
+
+            document.getElementById(
+                "loadingState"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "tableContainer"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "emptyState"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "errorState"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "resultInfo"
+            ).textContent =
+                "Loading users...";
+
+        }
+
+
+        /*
+         * Empty state
+         */
+
+        function showEmpty() {
+
+            document.getElementById(
+                "loadingState"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "tableContainer"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "emptyState"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "errorState"
+            ).style.display = "none";
+
+
+            updateResultInfo(0);
+
+        }
+
+
+        /*
+         * Error state
+         */
+
+        function showError(message) {
+
+            document.getElementById(
+                "loadingState"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "tableContainer"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "emptyState"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "errorState"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "errorMessage"
+            ).textContent = message;
+
+
+            document.getElementById(
+                "resultInfo"
+            ).textContent =
+                "Unable to load";
+
+        }
+
+
+        /*
+         * Back button
+         */
+
+        function goBack() {
+
+            window.location.href =
+                "user-mgmt.html";
+
+        }
+
+
+        /*
+         * Basic HTML escaping
+         */
+
+        function escapeHTML(value) {
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        function escapeAttribute(value) {
+
+            return escapeHTML(value);
+
+        }
+
+
+        /*
+         * Load users when page opens
+         */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            loadUsers
+        );
+
+    </script>
+
+</body>
+
+</html>

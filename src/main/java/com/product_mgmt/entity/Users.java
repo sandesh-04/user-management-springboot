@@ -15,34 +15,34 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class Users {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(nullable = false, unique = true, length = 50)
-	private String username;
-	
-	@Column(nullable = false, unique = true, length = 100)
-	private String email;
-	
-	@Column(nullable = false)
-	private String password;
-	
-	@Column(nullable = false, unique = true, length = 15)
-	private String mobile;
-	
-	@Column(nullable = false)
-	private LocalDate dob;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, unique = true, length = 20)
-	private Gender gender;
-	
-	@Column(nullable = false, length = 500)
-	private String address;
-	
-	@Column(length = 500)
-	private String dpUrl;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true, length = 50)
+    private String username;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true, length = 15)
+    private String mobile;
+
+    @Column(nullable = false)
+    private LocalDate dob;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Gender gender;
+
+    @Column(nullable = false, length = 500)
+    private String address;
+
+    @Column(length = 500)
+    private String dpUrl;
 
 	public Users() {
 		super();
@@ -141,9 +141,11 @@ public class Users {
 				+ ", mobile=" + mobile + ", dob=" + dob + ", gender=" + gender + ", address=" + address + ", dpUrl="
 				+ dpUrl + "]";
 	}
-	
-	
-	
-	
-	
+    
+    
+    
+    
+
+    
+    
 }

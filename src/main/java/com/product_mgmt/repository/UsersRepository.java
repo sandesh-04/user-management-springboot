@@ -4,6 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.product_mgmt.entity.Users;
 
-public interface UsersRepository extends JpaRepository<Users,Long>{
+public interface UsersRepository extends JpaRepository<Users, Long> {
 
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByMobile(String mobile);
 }
